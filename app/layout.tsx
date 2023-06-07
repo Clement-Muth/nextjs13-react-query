@@ -1,3 +1,4 @@
+import ApplicationKernel from "./ApplicationKernel";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -15,7 +16,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ApplicationKernel
+          applicationEnvironment={process.env.NODE_ENV === "production" ? "production" : "development"}
+        >
+          {children}
+        </ApplicationKernel>
+      </body>
     </html>
   );
 }
